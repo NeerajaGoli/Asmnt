@@ -21,12 +21,13 @@ public class PostFixCalc {
                 continue;
 
             // Current chars is a number, push it to stack for numbers
-            if ((chars[i] >= '0' && chars[i] <= '9') || chars[i]=='.' || chars[0]=='-' || (chars[i]=='-' && chars[i-1]=='(') )
+            if ((chars[i] >= '0' && chars[i] <= '9') || chars[i]=='.' || (chars[i]=='-' && i==0) || (chars[i]=='-' && chars[i-1]=='(') )
             {
                 StringBuffer num = new StringBuffer();
-                if((chars[0]=='-' || chars[i]=='-' && chars[i-1]=='(') )
+                if((chars[i]=='-' && i==0) || (chars[i]=='-' && chars[i-1]=='(')) 
                 {
                 	num.append('-');
+                	i++;
                 }
                 // There may be more than one digits in number
                 while (i < chars.length && ((chars[i] >= '0' && chars[i] <= '9')|| chars[i]=='.')) {
@@ -72,10 +73,11 @@ public class PostFixCalc {
             throw new
                     MissingFormatArgumentException("Missing parenthesis");
         }
-//        if (count_operators != count_operands-1) {
-//            throw new
-//                    MissingFormatArgumentException("Syntex error");
-//        }
+        if (count_operators != count_operands-1) {
+        	System.out.println(count_operands+" "+count_operators);
+            throw new
+                    MissingFormatArgumentException("Syntex error");
+        }
 
         // Entire expression has been parsed, apply remaining operators
         // on remaining operands in stacks.
@@ -142,7 +144,7 @@ public class PostFixCalc {
     public static void main(String[] args)
     {
         PostFixCalc p = new PostFixCalc();
-        System.out.println(p.evaluateExpression("-42.7656565+3.5"));
+        System.out.println(p.evaluateExpression("-2+3"));
         //System.out.println(gas.evaluateExpression("100 * 2 + 12"));
 //        System.out.println(gas.evaluateExpression("100 * 2 ^ 12"));
 //        System.out.println(gas.evaluateExpression("100 + 2 ^ 3 - 12"));

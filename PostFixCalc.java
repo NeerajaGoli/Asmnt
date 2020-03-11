@@ -5,11 +5,11 @@ import java.util.Stack;
 
 public class PostFixCalc {
 
-    public float evaluateExpression(String expression)
+    public double evaluateExpression(String expression)
     {
         char[] chars = expression.toCharArray();
 
-        Stack<Float> operand = new Stack<Float>();
+        Stack<Double> operand = new Stack<Double>();
         Stack<Character> operator = new Stack<Character>();
 
         int count_left = 0, count_right = 0, count_operators = 0, count_operands = 0;
@@ -35,7 +35,7 @@ public class PostFixCalc {
                 }
                 i--;
                 count_operands++;
-                operand.push(Float.parseFloat(num.toString()));
+                operand.push(Double.parseDouble(num.toString()));
             }
 
             else if (chars[i] == '(') {
@@ -113,7 +113,7 @@ public class PostFixCalc {
 
     // A utility method to apply an operator 'op' on operands 'a'
     // and 'b'. Return the result.
-    private float applyOp(char op, float b, float a)
+    private double applyOp(char op, double b, double a)
     {
         System.out.println(a+" "+b );
         switch (op)

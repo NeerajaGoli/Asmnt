@@ -108,15 +108,17 @@ public class EvalInteger {
 	        switch (ch)
 	        {
 	            case '+':
+	            	return 1;
 	            case '-':
-	                return 1;
-
-	            case '*':
-	            case '/':
 	                return 2;
 
+	            case '*':
+	            	return 3;
+	            case '/':
+	                return 4;
+
 	            case '^':
-	                return 3;
+	                return 5;
 	        }
 	        return -1;
 
@@ -155,7 +157,7 @@ public class EvalInteger {
 	    public static void main(String[] args)throws Exception
 	    {
 	        EvalInteger p = new EvalInteger();
-	        System.out.println(p.evaluateExpression("2345564556567575757+678766"));
+	        System.out.println(p.evaluateExpression("2+8*6/8-2"));
 	        //System.out.println(gas.evaluateExpression("100 * 2 + 12"));
 //	        System.out.println(gas.evaluateExpression("100 * 2 ^ 12"));
 //	        System.out.println(gas.evaluateExpression("100 + 2 ^ 3 - 12"));
